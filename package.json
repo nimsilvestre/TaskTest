@@ -1,7 +1,7 @@
 {
   "name": "react-boilerplate",
   "version": "1.0.0",
-  "description": "Basic React Boilerplate",
+  "description": "",
   "main": "./dist/server.js",
   "scripts": {
     "build": "webpack",
@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/theoutlander/react-boilerplate#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
