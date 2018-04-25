@@ -1,15 +1,11 @@
-import React, { Component } from "react";
-import Posts from "./components/Posts.js";
-import Comments from "./components/Comments.js";
+import React from "react";
+import PostsList from "./components/PostsList.js";
 
 class App extends React.Component {
   render() {
     return (
       <div>
-
-        <Posts />
-
-        <Comments />
+        <PostsList />
       </div>
     );
   }
