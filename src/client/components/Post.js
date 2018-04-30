@@ -26,8 +26,8 @@ class Post extends React.Component {
 
     return (
       <div>
-        <div className="jumbotron-div col s12">
-          <ul className="collection">
+        <div>
+          <ul>
             {this.props.posts.slice(0, 10).map(post => (
               <div>
                 <Container
@@ -40,7 +40,7 @@ class Post extends React.Component {
                   <p>Post: {post.body}</p>
                 </Container>
                 <div>
-                  <ul className="collection">
+                  <ul>
                     {this.state.showComments
                       ? this.props.comments
                           .filter(comment => comment.postId === post.id)
