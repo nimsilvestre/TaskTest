@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Post from "./Post.js";
 
 const postsID = "/posts";
 const commentsID = "/comments";
@@ -11,18 +12,8 @@ class Posts extends React.Component {
     super(props);
     this.state = {
       posts: [],
-      comments: [],
-      expanded: false,
-      commentsToShow: 3
+      comments: []
     };
-    this.clicked = this.clicked.bind(this);
-  }
-
-  clicked() {
-    axios.get(commentsURL).then(res => {
-      console.log("comments:", res);
-      this.setState({ comments: res.data });
-    });
   }
 
   componentDidMount() {
@@ -30,43 +21,19 @@ class Posts extends React.Component {
       console.log("posts:", res);
       this.setState({ posts: res.data });
     });
+
+    axios.get(commentsURL).then(res => {
+      console.log("comments:", res);
+      this.setState({ comments: res.data });
+    });
   }
 
   render() {
-    //console.log('VARIABLE WORKING!', postsURL);
-
     return (
       <div className="container">
-        <div className="jumbotron-div col s12">
-          <ul className="collection">
-            {this.state.posts.slice(0, 10).map(post => (
-              <div>
-                <div key={post.id}>
-                  <li onClick={this.clicked}>
-                    <h5>User ID: {post.id}</h5>
-                    <p>Post: {post.body}</p>
-                  </li>
-                </div>
-                <div>
-                  <ul className="collection">
-                    {this.state.comments
-                      .filter(comment => comment.postId === post.id)
-                      .slice(0, 3)
-                      .map(comment => (
-                        <li key={comment.id}>
-                          <p>Comment ID: {comment.postId}</p>
-                          <p>Comment: {comment.body}</p>
-                        </li>
-                      ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </ul>
-        </div>
+        <Post comments={this.state.comments} posts={this.state.posts} />
       </div>
     );
   }
 }
-
 export default Posts;
